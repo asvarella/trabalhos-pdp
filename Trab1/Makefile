@@ -1,9 +1,9 @@
 CXX=g++
 FLAGS=-O3
-all: problem
+all: solution
 
-problem: problem.cpp
-	$(CXX) $(FLAGS) problem.cpp -o problem -fopenmp
+solution: solution.cpp
+	$(CXX) $(FLAGS) solution.cpp -o solution -fopenmp
 
 clean:
-	rm problem 
+	rm solution 
