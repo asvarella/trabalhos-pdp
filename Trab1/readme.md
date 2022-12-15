@@ -22,6 +22,8 @@ entrada2 > entrada1 > entrada3 > entrada4
 
 input file suggestions:
 entrada5: same as entrada1 but k=20
-entrada6: same as entrada1 but k=50
+entrada6: same as entrada1 but k=60
+
+entrada5 > entrada1 > entrada6 >
 
 teste0.txt shows runtime logs and average runtime before using openMP.
