@@ -11,12 +11,10 @@ int MaxIncreasingSub(int arr[], int n, int k)
     //explicit declaration of i due to private()
     int i = 0;
 
-    #pragma omp parallel
-    {
-        #pragma omp for
-	    for(int i=0; i < n; i++)
-		    dp[i] = new int[k+1];
-    }
+    #pragma omp parallel for 
+	for(int i=0; i < n; i++)
+		dp[i] = new int[k+1];
+   
 
     #pragma omp parallel for collapse(2)
 	for(int i = 0; i < n; i++){
@@ -25,25 +23,29 @@ int MaxIncreasingSub(int arr[], int n, int k)
 		}
 	}
     
-    #pragma omp parallel private(i) shared(dp, arr)
-    {
-        #pragma omp for 
-	    for (int i = 0; i < n; i++) { 
-		    dp[i][1] = arr[i]; 
-	    }
-    }
     
+    #pragma omp parallel private(i) shared(dp, arr)
+{   
+    #pragma omp for
+	for (int i = 0; i < n; i++) { 
+		dp[i][1] = arr[i]; 
+	 }
+}   
+    
+    #pragma omp parallel for   
 	for (int i = 1; i < n; i++) { 
 		for (int j = 0; j < i; j++) { 
-			if (arr[j] < arr[i]) { 
-				for (int l = 1; l <= k - 1; l++) { 
-					if (dp[j][l] != -1) { 
-						dp[i][l + 1] = max(dp[i][l + 1],dp[j][l] + arr[i]); 
-					} 
-				} 
-			} 
-		} 
-	} 
+			 if (arr[j] < arr[i]) {
+				  for (int l = 1; l <= k - 1; l++) { 
+					   if (dp[j][l] != -1) { 
+						  dp[i][l + 1] = max(dp[i][l + 1],dp[j][l] + arr[i]); 
+					    } 
+				    } 
+			    } 
+		    } 
+	 } 
+
+
 
 	for (int i = 0; i < n; i++) { 
 		if (ans < dp[i][k]) 

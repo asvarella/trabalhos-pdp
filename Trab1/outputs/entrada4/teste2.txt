@@ -1,0 +1,21 @@
+Run #1:
+Ans: 4905
+Time: 218.586 seconds
+
+Run #2:
+Ans: 4905
+Time: 230.382 seconds
+
+Run #3:
+Ans: 4905
+Time: 218.482 seconds
+
+Run #4:
+Ans: 4905
+Time: 210.852 seconds
+
+Run #5:
+Ans: 4905
+Time: 210.488 seconds
+
+Average time: 217.75799999999998 seconds
