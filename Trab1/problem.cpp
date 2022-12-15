@@ -1,4 +1,8 @@
 #include <bits/stdc++.h> 
+
+#include <omp.h>
+
+
 using namespace std; 
 
 int MaxIncreasingSub(int arr[], int n, int k) 
@@ -43,8 +47,11 @@ int main()
 	int arr[n];
 	for (int i=0; i<n; i++)
 		cin >> arr[i];
+    double start = omp_get_wtime();
 	int ans = MaxIncreasingSub(arr, n, k); 
+    double finish = omp_get_wtime();
 	cout << ans << "\n"; 
+    cout << finish-start;
 	return 0;
 } 
 

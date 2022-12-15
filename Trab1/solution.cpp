@@ -5,19 +5,32 @@
 using namespace std; 
 
 int MaxIncreasingSub(int arr[], int n, int k) 
-{ 
+{   
 	int **dp, ans = -1;
 	dp = new int *[n];
-	for(int i=0; i < n; i++)
-		dp[i] = new int[k+1];
+    //explicit declaration of i due to private()
+    int i = 0;
+
+    #pragma omp parallel
+    {
+        #pragma omp for
+	    for(int i=0; i < n; i++)
+		    dp[i] = new int[k+1];
+    }
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < k; j++){
 			dp[i][j] = -1;
 		}
 	}
-	for (int i = 0; i < n; i++) { 
-		dp[i][1] = arr[i]; 
-	} 
+    
+    #pragma omp parallel private(i) shared(dp, arr)
+    {
+        #pragma omp for 
+	    for (int i = 0; i < n; i++) { 
+		    dp[i][1] = arr[i]; 
+	    }
+    }
+    
 	for (int i = 1; i < n; i++) { 
 		for (int j = 0; j < i; j++) { 
 			if (arr[j] < arr[i]) { 
@@ -50,7 +63,7 @@ int main()
 	int ans = MaxIncreasingSub(arr, n, k); 
     double finish = omp_get_wtime();
 	cout << ans << "\n"; 
-    cout << finish-start << " segundos" << "\n";
+    cout << finish-start;
 	return 0;
 } 
 
