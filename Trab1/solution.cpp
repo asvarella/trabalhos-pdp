@@ -17,6 +17,8 @@ int MaxIncreasingSub(int arr[], int n, int k)
 	    for(int i=0; i < n; i++)
 		    dp[i] = new int[k+1];
     }
+
+    #pragma omp parallel for collapse(2)
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < k; j++){
 			dp[i][j] = -1;
