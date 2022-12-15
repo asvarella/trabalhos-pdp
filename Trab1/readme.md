@@ -1,8 +1,8 @@
 how to use "filename".in to execute problem:
 
-./problem < "filename".in > "outputfile".out
+./problem < inputs/"filename".in > outputs/entrada*/"outputfile".out
 
-in which "outputfile" can be named in command line.
+in which "outputfile" can be named in command line. * is the number of input.
 
 inputGenerator.py can be used to create new input examples.
 saveLog.py is used to create files with 5 runtime samples for any test.
