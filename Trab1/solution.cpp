@@ -9,7 +9,11 @@ int MaxIncreasingSub(int arr[], int n, int k)
 	int **dp, ans = -1;
 	dp = new int *[n];
     //explicit declaration of i due to private()
-    int i = 0;
+    int i;
+    int j;
+    int l;
+    //for schedule()
+    int chunk = 1;
 
     #pragma omp parallel for 
 	for(int i=0; i < n; i++)
@@ -32,13 +36,13 @@ int MaxIncreasingSub(int arr[], int n, int k)
 	 }
 }   
     
-    #pragma omp parallel for   
+    #pragma omp parallel for private(i,j,l) shared(dp,arr) schedule(static,chunk)  
 	for (int i = 1; i < n; i++) { 
 		for (int j = 0; j < i; j++) { 
 			 if (arr[j] < arr[i]) {
 				  for (int l = 1; l <= k - 1; l++) { 
 					   if (dp[j][l] != -1) { 
-						  dp[i][l + 1] = max(dp[i][l + 1],dp[j][l] + arr[i]); 
+						  dp[i][l + 1] = max(dp[i][l + 1],dp[j][l] + arr[i]); // dependencia [l+1] SIMD?
 					    } 
 				    } 
 			    } 
@@ -46,7 +50,7 @@ int MaxIncreasingSub(int arr[], int n, int k)
 	 } 
 
 
-
+    //nao pode ser paralelizado???? analise
 	for (int i = 0; i < n; i++) { 
 		if (ans < dp[i][k]) 
 			ans = dp[i][k]; 
