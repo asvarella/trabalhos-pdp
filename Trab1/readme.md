@@ -17,6 +17,7 @@ entrada1: n = 60000, k = 40 (taken from source code)
 entrada2: n = 40000, k = 20
 entrada3: n = 90000, k = 80
 entrada4: n = 100000, k = 90
+entrada7: n = 150000, k = 120
 
 entrada2 > entrada1 > entrada3 > entrada4
 
