@@ -42,7 +42,7 @@ int MaxIncreasingSub(int arr[], int n, int k)
 			 if (arr[j] < arr[i]) {
 				  for (int l = 1; l <= k - 1; l++) { 
 					   if (dp[j][l] != -1) { 
-						  dp[i][l + 1] = max(dp[i][l + 1],dp[j][l] + arr[i]); // dependencia [l+1] SIMD?
+						  dp[i][l + 1] = max(dp[i][l + 1],dp[j][l] + arr[i]);
 					    } 
 				    } 
 			    } 
@@ -50,7 +50,7 @@ int MaxIncreasingSub(int arr[], int n, int k)
 	 } 
 
 
-    //nao pode ser paralelizado???? analise
+    
 	for (int i = 0; i < n; i++) { 
 		if (ans < dp[i][k]) 
 			ans = dp[i][k]; 
