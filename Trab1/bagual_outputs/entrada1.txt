@@ -1,0 +1,16 @@
+Tempos de execução encontrados para entrada 1.
+n = 60000, k = 40
+
+Run #1: sem otimizações de paralelização ou vetorizaçao:
+
+158.78 segundos
+154.771 segundos
+
+Run #2: com otimizações de paralelização:
+
+
+
+Run #3: com paralelização + auto-vetorização (flag -O3 ao compilar)
+
+
+Run #4: variando numero de threads 

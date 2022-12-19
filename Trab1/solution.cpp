@@ -50,7 +50,7 @@ int MaxIncreasingSub(int arr[], int n, int k)
 	 } 
 
 
-    
+    //#pragma omp for simd private(i) schedule(simd:static,chunk)
 	for (int i = 0; i < n; i++) { 
 		if (ans < dp[i][k]) 
 			ans = dp[i][k]; 
